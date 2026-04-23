@@ -1,31 +1,17 @@
 const menuToggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
-const form = document.getElementById("registrationForm");
-const formMessage = document.getElementById("formMessage");
 const revealElements = document.querySelectorAll(".reveal");
+const faqItems = document.querySelectorAll(".faq-item");
 
 if (menuToggle && menu) {
   menuToggle.addEventListener("click", () => {
     menu.classList.toggle("show");
   });
 
-  document.querySelectorAll(".menu a").forEach(link => {
+  document.querySelectorAll(".menu a").forEach((link) => {
     link.addEventListener("click", () => {
       menu.classList.remove("show");
     });
-  });
-}
-
-if (form) {
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    const name = formData.get("name");
-
-    formMessage.textContent = `${name}, თქვენი განაცხადი მიღებულია. შემდეგ ეტაპზე ამ ფორმას რეალურად დავუკავშირებთ ელფოსტას ან Google Sheets-ს.`;
-
-    form.reset();
   });
 }
 
@@ -37,11 +23,26 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.15,
-  }
+  { threshold: 0.14 }
 );
 
-revealElements.forEach((element) => {
-  observer.observe(element);
+revealElements.forEach((el) => observer.observe(el));
+
+faqItems.forEach((item) => {
+  const button = item.querySelector(".faq-question");
+  const answer = item.querySelector(".faq-answer");
+
+  button.addEventListener("click", () => {
+    const isActive = item.classList.contains("active");
+
+    faqItems.forEach((otherItem) => {
+      otherItem.classList.remove("active");
+      otherItem.querySelector(".faq-answer").style.maxHeight = null;
+    });
+
+    if (!isActive) {
+      item.classList.add("active");
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+  });
 });
