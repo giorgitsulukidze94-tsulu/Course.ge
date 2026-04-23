@@ -3,6 +3,8 @@ const menu = document.getElementById("menu");
 const revealElements = document.querySelectorAll(".reveal");
 const faqItems = document.querySelectorAll(".faq-item");
 const gotoButtons = document.querySelectorAll(".goto-btn");
+const applicationForm = document.getElementById("applicationForm");
+const formNote = document.getElementById("formNote");
 
 if (menuToggle && menu) {
   menuToggle.addEventListener("click", () => {
@@ -61,3 +63,18 @@ gotoButtons.forEach((button) => {
     }
   });
 });
+
+if (applicationForm) {
+  applicationForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(applicationForm);
+    const name = formData.get("name");
+
+    if (formNote) {
+      formNote.textContent = `${name}, თქვენი განაცხადი მიღებულია. შემდეგ ეტაპზე ეს ფორმა შეგვიძლია დავუკავშიროთ ელფოსტას ან Google Sheets-ს.`;
+    }
+
+    applicationForm.reset();
+  });
+}
