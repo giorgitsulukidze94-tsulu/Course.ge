@@ -2,24 +2,46 @@ const menuToggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
 const form = document.getElementById("registrationForm");
 const formMessage = document.getElementById("formMessage");
+const revealElements = document.querySelectorAll(".reveal");
 
-menuToggle.addEventListener("click", () => {
-  menu.classList.toggle("show");
-});
-
-document.querySelectorAll(".menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    menu.classList.remove("show");
+if (menuToggle && menu) {
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("show");
   });
-});
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  document.querySelectorAll(".menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("show");
+    });
+  });
+}
 
-  const formData = new FormData(form);
-  const name = formData.get("name");
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  formMessage.textContent = `${name}, თქვენი განაცხადი მიღებულია. შემდეგ ეტაპზე ამ ფორმას რეალურად დავუკავშირებთ ელფოსტას ან Google Sheets-ს.`;
+    const formData = new FormData(form);
+    const name = formData.get("name");
 
-  form.reset();
+    formMessage.textContent = `${name}, თქვენი განაცხადი მიღებულია. შემდეგ ეტაპზე ამ ფორმას რეალურად დავუკავშირებთ ელფოსტას ან Google Sheets-ს.`;
+
+    form.reset();
+  });
+}
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  },
+  {
+    threshold: 0.15,
+  }
+);
+
+revealElements.forEach((element) => {
+  observer.observe(element);
 });
