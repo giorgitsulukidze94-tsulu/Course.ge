@@ -38,6 +38,19 @@ body {
   overflow-x: hidden;
 }
 
+.page-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -4;
+  opacity: 0.04;
+  background-image:
+    radial-gradient(circle at 20% 20%, #fff 0.6px, transparent 0.7px),
+    radial-gradient(circle at 80% 60%, #fff 0.6px, transparent 0.7px),
+    radial-gradient(circle at 40% 80%, #fff 0.6px, transparent 0.7px);
+  background-size: 180px 180px;
+}
+
 .bg-grid {
   position: fixed;
   inset: 0;
@@ -56,6 +69,7 @@ body {
   filter: blur(90px);
   pointer-events: none;
   z-index: -2;
+  animation: floatOrb 10s ease-in-out infinite;
 }
 
 .orb-a {
@@ -72,6 +86,7 @@ body {
   background: rgba(154, 77, 255, 0.14);
   top: 140px;
   right: -80px;
+  animation-delay: 2s;
 }
 
 .orb-c {
@@ -80,6 +95,12 @@ body {
   background: rgba(32, 227, 155, 0.08);
   bottom: -120px;
   left: 30%;
+  animation-delay: 4s;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-18px) translateX(10px); }
 }
 
 a {
@@ -125,6 +146,11 @@ input {
   height: 46px;
   object-fit: contain;
   filter: drop-shadow(0 8px 20px rgba(39, 215, 255, 0.18));
+  transition: transform 0.3s ease;
+}
+
+.brand:hover .brand-logo {
+  transform: scale(1.06);
 }
 
 .brand-text {
@@ -147,11 +173,28 @@ input {
   color: #d9e3fb;
   font-size: 0.98rem;
   transition: 0.25s ease;
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  transition: width 0.25s ease;
 }
 
 .menu a:hover {
   color: var(--cyan);
   text-shadow: 0 0 18px rgba(39, 215, 255, 0.35);
+}
+
+.menu a:hover::after {
+  width: 100%;
 }
 
 .nav-right {
@@ -337,6 +380,15 @@ input {
   justify-content: center;
 }
 
+.hero-panel-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(39,215,255,0.12), rgba(154,77,255,0.08), transparent 70%);
+  filter: blur(10px);
+}
+
 .hero-panel-ring {
   position: absolute;
   width: 520px;
@@ -344,12 +396,20 @@ input {
   border-radius: 50%;
   border: 1px solid rgba(47, 107, 255, 0.16);
   box-shadow: 0 0 50px rgba(47, 107, 255, 0.08) inset;
+  animation: spinSlow 22s linear infinite;
 }
 
 .hero-panel-ring.ring-2 {
   width: 380px;
   height: 380px;
   border-color: rgba(154, 77, 255, 0.16);
+  animation-direction: reverse;
+  animation-duration: 18s;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .hero-logo {
@@ -375,11 +435,17 @@ input {
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow);
   z-index: 3;
+  animation: floatWidget 5s ease-in-out infinite;
 }
 
 .widget-1 { left: 26px; top: 120px; }
-.widget-2 { right: 34px; top: 190px; }
-.widget-3 { right: 40px; bottom: 48px; }
+.widget-2 { right: 34px; top: 190px; animation-delay: 1s; }
+.widget-3 { right: 40px; bottom: 48px; animation-delay: 2s; }
+
+@keyframes floatWidget {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
 .stats {
   padding: 14px 0 24px;
@@ -403,6 +469,12 @@ input {
   padding: 16px 18px;
   border-radius: 18px;
   background: rgba(255,255,255,0.02);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(39,215,255,0.08);
 }
 
 .stat-icon {
@@ -536,7 +608,7 @@ input {
 }
 
 .course-card:hover .triangle-btn span {
-  transform: scale(1.18) translateX(4px);
+  transform: scale(1.18) translateX(4px) rotate(-4deg);
   border-left-color: #7a63ff;
   filter: drop-shadow(0 0 18px rgba(122, 99, 255, 0.55));
 }
@@ -659,6 +731,12 @@ input {
 
 .benefit-card {
   padding: 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(39,215,255,0.3);
 }
 
 .benefit-card h4 {
@@ -779,6 +857,12 @@ input {
   place-items: center;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.socials a:hover {
+  transform: translateY(-3px);
+  border-color: rgba(39,215,255,0.28);
 }
 
 .newsletter {
