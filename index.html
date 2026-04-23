@@ -6,7 +6,7 @@
   <title>Course.ge | Excel კურსები და ციფრული სერვისები</title>
   <meta
     name="description"
-    content="პროფესიონალური Excel კურსები, ვიდეო გაკვეთილები, რეგისტრაცია, საიტების აწყობა და CRM/აღრიცხვის პლატფორმები."
+    content="პროფესიონალური Excel კურსები, ვიდეო გაკვეთილები, სილაბუსი, პრაქტიკული დავალებები, შეხვედრის დაჯავშნა და ციფრული სერვისები."
   />
   <link rel="icon" type="image/png" href="image5.png" />
   <link rel="stylesheet" href="style.css" />
@@ -28,15 +28,16 @@
       <nav class="menu" id="menu">
         <a href="#home">მთავარი</a>
         <a href="#courses">კურსები</a>
+        <a href="#learning">სწავლება</a>
         <a href="#videos">ვიდეოები</a>
+        <a href="#meeting">შეხვედრა</a>
         <a href="#services">სერვისები</a>
         <a href="#register">რეგისტრაცია</a>
-        <a href="#faq">FAQ</a>
         <a href="#contact">კონტაქტი</a>
       </nav>
 
       <div class="nav-right">
-        <a href="#register" class="btn btn-liquid btn-small">დარეგისტრირდი</a>
+        <a href="#meeting" class="btn btn-liquid btn-small">დაჯავშნეთ შეხვედრა</a>
         <button class="menu-toggle" id="menuToggle" aria-label="მენიუ">☰</button>
       </div>
     </div>
@@ -58,13 +59,13 @@
 
           <p class="hero-text">
             ისწავლე Excel პრაქტიკულად, რეალურ მაგალითებზე და სწორად გაწერილი სისტემით.
-            ამავე პლატფორმაზე წარმოდგენილი იქნება ვიდეო გაკვეთილები, რეგისტრაცია,
-            საიტების აწყობის სერვისი და მარტივი CRM/აღრიცხვის ვებ სისტემები.
+            ამავე პლატფორმაზე შეგიძლია გაეცნო ვიდეო გაკვეთილებს, სილაბუსს,
+            პრაქტიკულ დავალებებს, დაჯავშნო შეხვედრა და მიიღო დამატებითი ციფრული სერვისებიც.
           </p>
 
           <div class="hero-actions">
             <a href="#courses" class="btn btn-liquid">კურსების ნახვა</a>
-            <a href="#register" class="btn btn-glass">რეგისტრაცია</a>
+            <a href="#meeting" class="btn btn-glass">დაჯავშნეთ შეხვედრა</a>
           </div>
 
           <div class="mini-proof">
@@ -85,17 +86,9 @@
 
             <img src="image5.png" alt="Course.ge" class="hero-logo" />
 
-            <div class="floating widget widget-1">
-              <span>Excel</span>
-            </div>
-
-            <div class="floating widget widget-2">
-              <span>ვიდეო</span>
-            </div>
-
-            <div class="floating widget widget-3">
-              <span>CRM</span>
-            </div>
+            <div class="floating widget widget-1"><span>Excel</span></div>
+            <div class="floating widget widget-2"><span>ვიდეო</span></div>
+            <div class="floating widget widget-3"><span>შეხვედრა</span></div>
           </div>
         </div>
       </div>
@@ -105,34 +98,19 @@
       <div class="container stats-grid">
         <div class="stat-box">
           <div class="stat-icon">👥</div>
-          <div>
-            <strong>500+</strong>
-            <span>დაინტერესებული</span>
-          </div>
+          <div><strong>500+</strong><span>დაინტერესებული</span></div>
         </div>
-
         <div class="stat-box">
           <div class="stat-icon">▶</div>
-          <div>
-            <strong>50+</strong>
-            <span>ვიდეო გაკვეთილი</span>
-          </div>
+          <div><strong>50+</strong><span>ვიდეო გაკვეთილი</span></div>
         </div>
-
         <div class="stat-box">
-          <div class="stat-icon">💻</div>
-          <div>
-            <strong>10+</strong>
-            <span>ციფრული გადაწყვეტა</span>
-          </div>
+          <div class="stat-icon">📘</div>
+          <div><strong>10+</strong><span>სასწავლო თემა</span></div>
         </div>
-
         <div class="stat-box">
           <div class="stat-icon">🕘</div>
-          <div>
-            <strong>24/7</strong>
-            <span>ხელმისაწვდომობა</span>
-          </div>
+          <div><strong>24/7</strong><span>ხელმისაწვდომობა</span></div>
         </div>
       </div>
     </section>
@@ -150,9 +128,7 @@
             <div class="course-icon excel-icon">X</div>
             <h3>Excel საფუძვლები</h3>
             <p>საწყისი დონე, ინტერფეისი, უჯრები, ფორმატირება და საბაზისო მუშაობა.</p>
-            <button class="triangle-btn" aria-label="ნახვა">
-              <span></span>
-            </button>
+            <button class="triangle-btn goto-btn" data-target="register" aria-label="ნახვა"><span></span></button>
           </article>
 
           <article class="course-card reveal delay-1">
@@ -160,9 +136,7 @@
             <div class="course-icon chart-icon">↗</div>
             <h3>Excel ანალიტიკა</h3>
             <p>მონაცემების ანალიზი, ფილტრები, დიაგრამები, Pivot Table და ლოგიკა.</p>
-            <button class="triangle-btn" aria-label="ნახვა">
-              <span></span>
-            </button>
+            <button class="triangle-btn goto-btn" data-target="register" aria-label="ნახვა"><span></span></button>
           </article>
 
           <article class="course-card reveal delay-2">
@@ -170,9 +144,7 @@
             <div class="course-icon fx-icon">fx</div>
             <h3>Excel ფუნქციები</h3>
             <p>ფორმულები და ფუნქციები — IF, SUMIF, COUNTIF, XLOOKUP და სხვა.</p>
-            <button class="triangle-btn" aria-label="ნახვა">
-              <span></span>
-            </button>
+            <button class="triangle-btn goto-btn" data-target="register" aria-label="ნახვა"><span></span></button>
           </article>
 
           <article class="course-card reveal delay-3">
@@ -180,21 +152,13 @@
             <div class="course-icon bag-icon">▣</div>
             <h3>Excel პრაქტიკაში</h3>
             <p>რეალური ბიზნეს ამოცანები, ცხრილები, ბაზები და ავტომატიზებული პროცესები.</p>
-            <button class="triangle-btn" aria-label="ნახვა">
-              <span></span>
-            </button>
+            <button class="triangle-btn goto-btn" data-target="register" aria-label="ნახვა"><span></span></button>
           </article>
-        </div>
-
-        <div class="slider-dots reveal">
-          <span class="active"></span>
-          <span></span>
-          <span></span>
         </div>
       </div>
     </section>
 
-    <section class="section" id="videos">
+    <section class="section" id="learning">
       <div class="container">
         <div class="section-head reveal">
           <div class="section-badge">ვიდეო გაკვეთილები</div>
@@ -207,9 +171,7 @@
             <div class="course-icon chart-icon">▶</div>
             <h3>ვიდეო გაკვეთილები</h3>
             <p>ნაბიჯ-ნაბიჯ ვიდეო მასალა Excel-ის შესასწავლად და ცოდნის გასამყარებლად.</p>
-            <button class="triangle-btn" aria-label="ნახვა">
-              <span></span>
-            </button>
+            <button class="triangle-btn goto-btn" data-target="videos" aria-label="ვიდეოებზე გადასვლა"><span></span></button>
           </article>
 
           <article class="course-card reveal delay-1">
@@ -217,9 +179,7 @@
             <div class="course-icon fx-icon">⊞</div>
             <h3>სილაბუსი</h3>
             <p>სტრუქტურირებული სასწავლო პროგრამა, თემების მიხედვით დალაგებული გზამკვლევი.</p>
-            <button class="triangle-btn" aria-label="ნახვა">
-              <span></span>
-            </button>
+            <button class="triangle-btn goto-btn" data-target="syllabus" aria-label="სილაბუსზე გადასვლა"><span></span></button>
           </article>
 
           <article class="course-card reveal delay-2">
@@ -227,9 +187,7 @@
             <div class="course-icon excel-icon">✓</div>
             <h3>პრაქტიკული დავალებები</h3>
             <p>დავალებები რეალურ მაგალითებზე, რომ სწავლა მხოლოდ თეორიული არ იყოს.</p>
-            <button class="triangle-btn" aria-label="ნახვა">
-              <span></span>
-            </button>
+            <button class="triangle-btn goto-btn" data-target="assignments" aria-label="დავალებებზე გადასვლა"><span></span></button>
           </article>
 
           <article class="course-card reveal delay-3">
@@ -237,10 +195,115 @@
             <div class="course-icon bag-icon">🎯</div>
             <h3>შედეგზე ორიენტაცია</h3>
             <p>სწავლის მიზანია ცოდნის გამოყენება რეალურ სამუშაოსა და ბიზნეს პროცესებში.</p>
-            <button class="triangle-btn" aria-label="ნახვა">
-              <span></span>
-            </button>
+            <button class="triangle-btn goto-btn" data-target="meeting" aria-label="შეხვედრაზე გადასვლა"><span></span></button>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="videos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-badge">ვიდეოები</div>
+          <h2>ვიდეო გაკვეთილები</h2>
+        </div>
+
+        <div class="video-grid">
+          <article class="video-card reveal">
+            <div class="video-thumb">
+              <div class="play-circle">▶</div>
+            </div>
+            <h3>Excel-ის შესავალი</h3>
+            <p>პირველი გაკვეთილი — ინტერფეისი, სამუშაო გარემო და სწორი დასაწყისი.</p>
+          </article>
+
+          <article class="video-card reveal delay-1">
+            <div class="video-thumb">
+              <div class="play-circle">▶</div>
+            </div>
+            <h3>ფორმულების საფუძვლები</h3>
+            <p>ძირითადი ფუნქციები, ფორმულის ლოგიკა და პრაქტიკული გამოყენება.</p>
+          </article>
+
+          <article class="video-card reveal delay-2">
+            <div class="video-thumb">
+              <div class="play-circle">▶</div>
+            </div>
+            <h3>Pivot და ანალიზი</h3>
+            <p>მონაცემების დამუშავება, ანალიზი და ვიზუალურად ძლიერი შედეგი.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="syllabus">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-badge">სილაბუსი</div>
+          <h2>სასწავლო პროგრამა</h2>
+        </div>
+
+        <div class="info-card reveal syllabus-box">
+          <ul class="feature-list">
+            <li><span>✦</span> Excel ინტერფეისი და ბაზისური ნავიგაცია</li>
+            <li><span>✦</span> ფორმატირება და ცხრილების გამართვა</li>
+            <li><span>✦</span> ფორმულები და ფუნქციები</li>
+            <li><span>✦</span> ფილტრი, სორტირება და ანალიზი</li>
+            <li><span>✦</span> Pivot Table და პრაქტიკული ქეისები</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="assignments">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-badge">დავალებები</div>
+          <h2>პრაქტიკული დავალებები</h2>
+        </div>
+
+        <div class="video-grid">
+          <article class="video-card reveal">
+            <h3>ცხრილის გამართვა</h3>
+            <p>რეალური მონაცემების მიხედვით გაასწორე სტრუქტურა და ფორმატირება.</p>
+          </article>
+
+          <article class="video-card reveal delay-1">
+            <h3>ფორმულების ამოცანა</h3>
+            <p>გამოიყენე IF, SUMIF, COUNTIF და სხვა ფუნქციები კონკრეტულ ქეისში.</p>
+          </article>
+
+          <article class="video-card reveal delay-2">
+            <h3>ანალიტიკური დავალება</h3>
+            <p>Pivot და დიაგრამებით შექმენი მკაფიო ანგარიშგება.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section two-panels" id="meeting">
+      <div class="container two-grid">
+        <div class="info-card reveal">
+          <h3>დაჯავშნეთ შეხვედრა</h3>
+          <ul class="feature-list">
+            <li><span>✦</span> ონლაინ ვიდეო ქოლი</li>
+            <li><span>✦</span> კურსის დეტალების განხილვა</li>
+            <li><span>✦</span> ინდივიდუალური კონსულტაცია</li>
+            <li><span>✦</span> თქვენი მოთხოვნების შეფასება</li>
+          </ul>
+        </div>
+
+        <div class="cta-card reveal delay-1">
+          <div class="cta-glow"></div>
+          <div class="cta-copy">
+            <h3>ვიდეო შეხვედრის დაჯავშნა</h3>
+            <p>
+              თუ გინდა ჯერ გაიარო მოკლე ონლაინ შეხვედრა, გაეცნო კურსს, ფორმატს ან
+              მიიღო კონსულტაცია — დაამატე ეს სექცია და შემდეგში შევაერთებთ რეალურ booking ფორმასთან.
+            </p>
+            <a href="#contact" class="btn btn-liquid">დაჯავშნეთ შეხვედრა</a>
+          </div>
+          <div class="cta-visual">📞</div>
         </div>
       </div>
     </section>
@@ -285,8 +348,8 @@
           <div class="cta-copy">
             <h3>ჩაეწერე კურსზე ან კონსულტაციაზე</h3>
             <p>
-              ამ ბლოკში შემდეგ ეტაპზე შეგვიძლია ჩავსვათ რეგისტრაციის ფორმა,
-              განაცხადის გაგზავნა, კონსულტაციაზე ჩაწერა და მონაცემების შენახვა.
+              აქ შემდეგ ეტაპზე შეგვიძლია ჩავსვათ რეგისტრაციის ფორმა,
+              განაცხადის გაგზავნა, ვიდეო ქოლის დაჯავშნა და მონაცემების ავტომატური შენახვა.
             </p>
             <a href="#contact" class="btn btn-liquid">რეგისტრაცია</a>
           </div>
@@ -319,17 +382,17 @@
               <span>+</span>
             </button>
             <div class="faq-answer">
-              <p>კი, ვიდეო მასალის ბლოკი უკვე გათვალისწინებულია და შემდეგ ეტაპზე რეალური კონტენტი დაემატება.</p>
+              <p>კი, ვიდეო გაკვეთილების სექცია უკვე გამოყოფილია და შეგიძლია ეტაპობრივად დაამატო რეალური ვიდეოები.</p>
             </div>
           </div>
 
           <div class="faq-item reveal delay-2">
             <button class="faq-question">
-              მხოლოდ Excel კურსებია?
+              შესაძლებელია შეხვედრის დაჯავშნა?
               <span>+</span>
             </button>
             <div class="faq-answer">
-              <p>არა, პლატფორმაზე წარმოდგენილი იქნება ასევე საიტების აწყობა, CRM და აღრიცხვის სისტემების სერვისებიც.</p>
+              <p>კი, საიტზე გათვალისწინებულია შეხვედრის სექცია და შემდეგში შეგვიძლია დავამატოთ რეალური booking ფუნქციაც.</p>
             </div>
           </div>
         </div>
