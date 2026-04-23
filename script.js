@@ -2,6 +2,7 @@ const menuToggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
 const revealElements = document.querySelectorAll(".reveal");
 const faqItems = document.querySelectorAll(".faq-item");
+const gotoButtons = document.querySelectorAll(".goto-btn");
 
 if (menuToggle && menu) {
   menuToggle.addEventListener("click", () => {
@@ -43,6 +44,20 @@ faqItems.forEach((item) => {
     if (!isActive) {
       item.classList.add("active");
       answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+  });
+});
+
+gotoButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const targetId = button.getAttribute("data-target");
+    const target = document.getElementById(targetId);
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     }
   });
 });
