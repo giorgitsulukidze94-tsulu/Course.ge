@@ -1,245 +1,171 @@
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYmZJSbjPPn13Ks30mjg0rXlndSt0VqCmYpWUizfMQF_1s0rNZxxZw-TzqcHfRsUg_JQ/exec";
 
+// ================= MENU =================
 const menuToggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
-const revealElements = document.querySelectorAll(".reveal");
-const faqItems = document.querySelectorAll(".faq-item");
-const gotoButtons = document.querySelectorAll(".goto-btn");
-const applicationForm = document.getElementById("applicationForm");
-const formNote = document.getElementById("formNote");
 
 if (menuToggle && menu) {
   menuToggle.addEventListener("click", () => {
     menu.classList.toggle("show");
   });
-
-  document.querySelectorAll(".menu a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menu.classList.remove("show");
-    });
-  });
 }
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  },
-  { threshold: 0.14 }
-);
+// ================= SCROLL ANIMATION =================
+const revealElements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+});
 
 revealElements.forEach((el) => observer.observe(el));
 
-faqItems.forEach((item) => {
-  const button = item.querySelector(".faq-question");
-  const answer = item.querySelector(".faq-answer");
+// ================= FORM =================
+const form = document.getElementById("applicationForm");
+const formNote = document.getElementById("formNote");
 
-  button.addEventListener("click", () => {
-    const isActive = item.classList.contains("active");
-
-    faqItems.forEach((otherItem) => {
-      otherItem.classList.remove("active");
-      otherItem.querySelector(".faq-answer").style.maxHeight = null;
-    });
-
-    if (!isActive) {
-      item.classList.add("active");
-      answer.style.maxHeight = answer.scrollHeight + "px";
-    }
-  });
-});
-
-gotoButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const targetId = button.getAttribute("data-target");
-    const target = document.getElementById(targetId);
-
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-  });
-});
-
-if (applicationForm) {
-  applicationForm.addEventListener("submit", async (e) => {
+if (form) {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(applicationForm);
+    const data = new FormData(form);
 
     const payload = {
-      name: formData.get("name"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      topic: formData.get("topic"),
-      message: formData.get("message")
+      name: data.get("name"),
+      phone: data.get("phone"),
+      email: data.get("email"),
+      topic: data.get("topic"),
+      message: data.get("message"),
     };
 
-    if (formNote) {
-      formNote.textContent = "იგზავნება...";
-    }
+    formNote.textContent = "იგზავნება...";
 
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
-      if (formNote) {
-        formNote.textContent = "განაცხადი წარმატებით გაიგზავნა.";
-      }
-
-      applicationForm.reset();
-    } catch (error) {
-      if (formNote) {
-        formNote.textContent = "შეცდომა დაფიქსირდა. სცადეთ თავიდან.";
-      }
+      formNote.textContent = "წარმატებით გაიგზავნა ✅";
+      form.reset();
+    } catch {
+      formNote.textContent = "შეცდომა ❌";
     }
   });
 }
 
+// ================= VIDEO SYSTEM =================
+let allVideos = [];
+let videoIndex = 0;
+let showAllVideos = false;
+
 async function loadVideos() {
   const container = document.getElementById("videosContainer");
-
   if (!container) return;
 
-  try {
-    const response = await fetch(`${GOOGLE_SCRIPT_URL}?type=videos`);
-    const videos = await response.json();
+  const res = await fetch(`${GOOGLE_SCRIPT_URL}?type=videos`);
+  allVideos = await res.json();
 
-    container.innerHTML = "";
+  renderVideos();
+}
 
-    videos.forEach((video) => {
-      if (String(video["აქტიური"]).toUpperCase() !== "YES") return;
+function renderVideos() {
+  const container = document.getElementById("videosContainer");
+  container.innerHTML = "";
 
-      const title = video["სათაური"] || "";
-      const description = video["აღწერა"] || "";
-      const link = video["YouTube Link"] || "";
+  let videosToShow = showAllVideos
+    ? allVideos
+    : allVideos.slice(videoIndex, videoIndex + 7);
 
-      const embedLink = convertYouTubeLink(link);
+  videosToShow.forEach((v) => {
+    const embed = convertYouTube(v["YouTube Link"]);
 
-      container.innerHTML += `
-        <article class="video-card reveal visible">
-          <div class="video-thumb">
-            ${
-              embedLink
-                ? `<iframe width="100%" height="100%" src="${embedLink}" frameborder="0" allowfullscreen></iframe>`
-                : `<div class="play-circle">▶</div>`
-            }
-          </div>
-          <h3>${title}</h3>
-          <p>${description}</p>
-        </article>
-      `;
-    });
+    container.innerHTML += `
+      <div class="video-card">
+        <div class="video-thumb">
+          <iframe src="${embed}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <h3>${v["სათაური"]}</h3>
+        <p>${v["აღწერა"]}</p>
+      </div>
+    `;
+  });
+}
 
-    if (container.innerHTML.trim() === "") {
-      container.innerHTML = `
-        <article class="video-card reveal visible">
-          <div class="video-thumb">
-            <div class="play-circle">▶</div>
-          </div>
-          <h3>ვიდეოები მზადდება</h3>
-          <p>ვიდეო გაკვეთილები მალე დაემატება.</p>
-        </article>
-      `;
-    }
-  } catch (error) {
-    console.error("Videos loading error:", error);
+// arrows
+function nextVideos() {
+  if (videoIndex + 7 < allVideos.length) {
+    videoIndex += 7;
+    renderVideos();
   }
 }
+
+function prevVideos() {
+  if (videoIndex - 7 >= 0) {
+    videoIndex -= 7;
+    renderVideos();
+  }
+}
+
+// toggle
+function toggleVideos() {
+  showAllVideos = !showAllVideos;
+  renderVideos();
+}
+
+// ================= SYLLABUS =================
+let allSyllabus = [];
+let showAllSyllabus = false;
 
 async function loadSyllabus() {
   const container = document.getElementById("syllabusContainer");
-
   if (!container) return;
 
-  try {
-    const response = await fetch(`${GOOGLE_SCRIPT_URL}?type=syllabus`);
-    const syllabus = await response.json();
+  const res = await fetch(`${GOOGLE_SCRIPT_URL}?type=syllabus`);
+  allSyllabus = await res.json();
 
-    container.innerHTML = "";
-
-    syllabus.forEach((item) => {
-      if (String(item["აქტიური"]).toUpperCase() !== "YES") return;
-
-      const title = item["თემა"] || "";
-      const description = item["აღწერა"] || "";
-
-      container.innerHTML += `
-        <li><span>✦</span> ${title} — ${description}</li>
-      `;
-    });
-  } catch (error) {
-    console.error("Syllabus loading error:", error);
-  }
+  renderSyllabus();
 }
 
-async function loadServices() {
-  const container = document.getElementById("servicesContainer");
+function renderSyllabus() {
+  const container = document.getElementById("syllabusContainer");
+  container.innerHTML = "";
 
-  if (!container) return;
+  let items = showAllSyllabus
+    ? allSyllabus
+    : allSyllabus.slice(0, 5);
 
-  try {
-    const response = await fetch(`${GOOGLE_SCRIPT_URL}?type=services`);
-    const services = await response.json();
-
-    container.innerHTML = "";
-
-    services.forEach((service) => {
-      if (String(service["აქტიური"]).toUpperCase() !== "YES") return;
-
-      const title = service["სერვისი"] || "";
-      const description = service["აღწერა"] || "";
-      const buttonText = service["ღილაკის ტექსტი"] || "დეტალურად";
-
-      container.innerHTML += `
-        <article class="course-card reveal visible">
-          <div class="course-glow cyan"></div>
-          <div class="course-icon chart-icon">⌘</div>
-          <h3>${title}</h3>
-          <p>${description}</p>
-          <button class="triangle-btn goto-btn" data-target="application" aria-label="${buttonText}">
-            <span></span>
-          </button>
-        </article>
-      `;
-    });
-  } catch (error) {
-    console.error("Services loading error:", error);
-  }
+  items.forEach((s) => {
+    container.innerHTML += `<li>✦ ${s["თემა"]}</li>`;
+  });
 }
 
-function convertYouTubeLink(link) {
+function toggleSyllabus() {
+  showAllSyllabus = !showAllSyllabus;
+  renderSyllabus();
+}
+
+// ================= HELPERS =================
+function convertYouTube(link) {
   if (!link) return "";
 
-  if (link.includes("youtube.com/watch?v=")) {
+  if (link.includes("watch?v=")) {
     return link.replace("watch?v=", "embed/");
   }
 
-  if (link.includes("youtu.be/")) {
-    const videoId = link.split("youtu.be/")[1];
-    return `https://www.youtube.com/embed/${videoId}`;
+  if (link.includes("youtu.be")) {
+    return "https://www.youtube.com/embed/" + link.split("/").pop();
   }
 
-  if (link.includes("youtube.com/embed/")) {
-    return link;
-  }
-
-  return "";
+  return link;
 }
 
+// ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
   loadVideos();
   loadSyllabus();
-  loadServices();
 });
