@@ -209,6 +209,11 @@ function renderVideos() {
   const container = document.getElementById("videosContainer");
   if (!container) return;
 
+  const wrap = container.closest(".video-carousel-wrap");
+  if (wrap) {
+    wrap.classList.toggle("expanded", videosExpanded);
+  }
+
   let visibleVideos;
   if (!videosExpanded) {
     visibleVideos = allVideos.slice(0, VIDEOS_INITIAL);
