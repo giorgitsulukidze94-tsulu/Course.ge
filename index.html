@@ -8,7 +8,33 @@
     name="description"
     content="პროფესიონალური Excel კურსები, ვიდეო გაკვეთილები, სილაბუსი, პრაქტიკული დავალებები, შეხვედრის დაჯავშნა და ციფრული სერვისები."
   />
+  <meta name="keywords" content="Excel, Excel კურსი, ვიდეო გაკვეთილები, სილაბუსი, Excel ანალიტიკა, Excel ფუნქციები, CRM, საიტების აწყობა" />
+  <meta name="author" content="cours.ge" />
+  <meta name="theme-color" content="#030816" />
+  <link rel="canonical" href="https://cours.ge/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cours.ge/" />
+  <meta property="og:title" content="Course.ge | Excel კურსები და ციფრული სერვისები" />
+  <meta property="og:description" content="პროფესიონალური Excel კურსები, ვიდეო გაკვეთილები, სილაბუსი, პრაქტიკული დავალებები და ციფრული სერვისები ერთ სივრცეში." />
+  <meta property="og:image" content="https://cours.ge/image5.png" />
+  <meta property="og:locale" content="ka_GE" />
+  <meta property="og:site_name" content="cours.ge" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Course.ge | Excel კურსები და ციფრული სერვისები" />
+  <meta name="twitter:description" content="Excel კურსები, ვიდეო გაკვეთილები და ციფრული სერვისები ერთ სივრცეში." />
+  <meta name="twitter:image" content="https://cours.ge/image5.png" />
+
   <link rel="icon" type="image/png" href="image5.png" />
+
+  <!-- ქართული ფონტი -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -87,9 +113,9 @@
 
             <img src="image5.png" alt="Course.ge" class="hero-logo" />
 
-            <div class="floating widget widget-1"><span>Excel</span></div>
-            <div class="floating widget widget-2"><span>ვიდეო</span></div>
-            <div class="floating widget widget-3"><span>შეხვედრა</span></div>
+            <a href="#syllabus" class="floating widget widget-1" aria-label="გადასვლა სილაბუსზე"><span>სილაბუსი</span></a>
+            <a href="#videos" class="floating widget widget-2" aria-label="გადასვლა ვიდეოებზე"><span>ვიდეო</span></a>
+            <a href="#application" class="floating widget widget-3" aria-label="გადასვლა განაცხადის ფორმაზე"><span>შეხვედრა</span></a>
           </div>
         </div>
       </div>
@@ -231,12 +257,42 @@
         </div>
 
         <div class="syllabus-box reveal">
-          <ul class="feature-list" id="syllabusContainer">
-            <li><span>✦</span> Excel ინტერფეისი და ბაზისური ნავიგაცია</li>
-            <li><span>✦</span> ფორმატირება და ცხრილების გამართვა</li>
-            <li><span>✦</span> ფორმულები და ფუნქციები</li>
-            <li><span>✦</span> ფილტრი, სორტირება და ანალიზი</li>
-            <li><span>✦</span> Pivot Table და პრაქტიკული ქეისები</li>
+          <ul class="feature-list syllabus-list" id="syllabusContainer">
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>Excel ინტერფეისი და ბაზისური ნავიგაცია</strong>
+                <p>პროგრამის გარემო, მენიუები, უჯრები და სამუშაო ფურცელი.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ფორმატირება და ცხრილების გამართვა</strong>
+                <p>სტილი, ფერები, ცხრილის სტრუქტურის გამართვა.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ფორმულები და ფუნქციები</strong>
+                <p>IF, SUM, COUNTIF, XLOOKUP და სხვა ყველაზე საჭირო ფუნქციები.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ფილტრი, სორტირება და ანალიზი</strong>
+                <p>მონაცემების დახარისხება და ფილტრით მართვა.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>Pivot Table და პრაქტიკული ქეისები</strong>
+                <p>რთული ანალიზი ერთი ცხრილიდან, რეალური ბიზნეს მაგალითები.</p>
+              </div>
+            </li>
           </ul>
 
           <div class="center-action syllabus-action">
@@ -412,48 +468,51 @@
           <p>Excel კურსები, ვიდეო გაკვეთილები და ციფრული სერვისები ერთ სივრცეში.</p>
 
           <div class="socials">
-            <a href="#">f</a>
-            <a href="#">▶</a>
-            <a href="#">in</a>
-            <a href="#">◎</a>
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="YouTube">▶</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Instagram">◎</a>
           </div>
         </div>
 
         <div>
           <h4>კურსები</h4>
           <ul>
-            <li><a href="#">Excel საფუძვლები</a></li>
-            <li><a href="#">Excel ანალიტიკა</a></li>
-            <li><a href="#">Excel ფუნქციები</a></li>
-            <li><a href="#">ვიდეო გაკვეთილები</a></li>
+            <li><a href="#courses">Excel საფუძვლები</a></li>
+            <li><a href="#courses">Excel ანალიტიკა</a></li>
+            <li><a href="#courses">Excel ფუნქციები</a></li>
+            <li><a href="#videos">ვიდეო გაკვეთილები</a></li>
           </ul>
         </div>
 
         <div>
           <h4>სერვისები</h4>
           <ul>
-            <li><a href="#">საიტების აწყობა</a></li>
-            <li><a href="#">CRM სისტემები</a></li>
-            <li><a href="#">გაყიდვების აღრიცხვა</a></li>
-            <li><a href="#">მარაგების მართვა</a></li>
+            <li><a href="#services">საიტების აწყობა</a></li>
+            <li><a href="#services">CRM სისტემები</a></li>
+            <li><a href="#services">გაყიდვების აღრიცხვა</a></li>
+            <li><a href="#services">მარაგების მართვა</a></li>
           </ul>
         </div>
 
         <div>
           <h4>სიახლეების მიღება</h4>
-          <form class="newsletter">
-            <input type="email" placeholder="შეიყვანე შენი ელ-ფოსტა" />
-            <button type="submit">→</button>
+          <form class="newsletter" id="newsletterForm">
+            <input type="email" name="email" placeholder="შეიყვანე შენი ელ-ფოსტა" required />
+            <button type="submit" aria-label="გამოწერა">→</button>
           </form>
+          <p class="newsletter-note" id="newsletterNote"></p>
         </div>
       </div>
 
       <div class="container footer-bottom">
         <p>© 2026 cours.ge • ყველა უფლება დაცულია</p>
-        <a href="#home" class="scroll-top">↑</a>
+        <a href="#home" class="scroll-top" aria-label="ზემოთ დაბრუნება">↑</a>
       </div>
     </footer>
   </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="script.js"></script>
 </body>
