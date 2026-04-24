@@ -209,30 +209,16 @@
           <h2>ვიდეო გაკვეთილები</h2>
         </div>
 
-        <div class="video-grid three-col" id="videosContainer">
-          <article class="video-card reveal">
-            <div class="video-thumb">
-              <div class="play-circle">▶</div>
-            </div>
-            <h3>Excel-ის შესავალი</h3>
-            <p>პირველი გაკვეთილი — ინტერფეისი, სამუშაო გარემო და სწორი დასაწყისი.</p>
-          </article>
+        <div class="video-carousel-wrap">
+          <button class="carousel-arrow left" id="videoPrev" type="button" aria-label="წინა ვიდეო">‹</button>
 
-          <article class="video-card reveal delay-1">
-            <div class="video-thumb">
-              <div class="play-circle">▶</div>
-            </div>
-            <h3>ფორმულების საფუძვლები</h3>
-            <p>ძირითადი ფუნქციები, ფორმულის ლოგიკა და პრაქტიკული გამოყენება.</p>
-          </article>
+          <div class="video-carousel" id="videosContainer"></div>
 
-          <article class="video-card reveal delay-2">
-            <div class="video-thumb">
-              <div class="play-circle">▶</div>
-            </div>
-            <h3>Pivot და ანალიზი</h3>
-            <p>მონაცემების დამუშავება, ანალიზი და ვიზუალურად ძლიერი შედეგი.</p>
-          </article>
+          <button class="carousel-arrow right" id="videoNext" type="button" aria-label="შემდეგი ვიდეო">›</button>
+        </div>
+
+        <div class="center-action">
+          <button class="btn btn-glass" id="showMoreVideos" type="button">მეტის ჩვენება</button>
         </div>
       </div>
     </section>
@@ -252,6 +238,10 @@
             <li><span>✦</span> ფილტრი, სორტირება და ანალიზი</li>
             <li><span>✦</span> Pivot Table და პრაქტიკული ქეისები</li>
           </ul>
+
+          <div class="center-action syllabus-action">
+            <button class="btn btn-glass" id="showMoreSyllabus" type="button">მეტის ჩვენება</button>
+          </div>
         </div>
       </div>
     </section>
