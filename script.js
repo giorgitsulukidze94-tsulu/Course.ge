@@ -1,9 +1,9 @@
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYmZJSbjPPn13Ks30mjg0rXlndSt0VqCmYpWUizfMQF_1s0rNZxxZw-TzqcHfRsUg_JQ/exec";
 
 const VIDEOS_INITIAL = 7;
-const VIDEOS_PAGE_SIZE = 10;
+const VIDEOS_PER_PAGE = 10;
 const SYLLABUS_INITIAL = 5;
-const SYLLABUS_PAGE_SIZE = 10;
+const SYLLABUS_PER_PAGE = 10;
 
 const menuToggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
@@ -14,10 +14,12 @@ const newsletterNote = document.getElementById("newsletterNote");
 const toastEl = document.getElementById("toast");
 
 let allVideos = [];
-let videosShown = VIDEOS_INITIAL;
+let videosExpanded = false;
+let videosPage = 1;
 
 let allSyllabus = [];
-let syllabusShown = SYLLABUS_INITIAL;
+let syllabusExpanded = false;
+let syllabusPage = 1;
 
 /* ---------- Mobile menu ---------- */
 if (menuToggle && menu) {
@@ -192,8 +194,10 @@ async function loadVideos() {
       return String(video["აქტიური"]).trim().toUpperCase() === "YES";
     });
 
-    videosShown = Math.min(VIDEOS_INITIAL, allVideos.length);
+    videosExpanded = false;
+    videosPage = 1;
     renderVideos();
+    renderVideosPagination();
     updateVideosMoreBtn();
     updateCarouselArrows();
   } catch (error) {
@@ -205,7 +209,14 @@ function renderVideos() {
   const container = document.getElementById("videosContainer");
   if (!container) return;
 
-  const visibleVideos = allVideos.slice(0, videosShown);
+  let visibleVideos;
+  if (!videosExpanded) {
+    visibleVideos = allVideos.slice(0, VIDEOS_INITIAL);
+  } else {
+    const start = (videosPage - 1) * VIDEOS_PER_PAGE;
+    const end = start + VIDEOS_PER_PAGE;
+    visibleVideos = allVideos.slice(start, end);
+  }
 
   container.innerHTML = visibleVideos.map((video) => {
     const title = video["სათაური"] || "";
@@ -226,7 +237,36 @@ function renderVideos() {
     `;
   }).join("");
 
+  // scroll carousel back to start on page change
+  container.scrollLeft = 0;
   updateCarouselArrows();
+}
+
+function renderVideosPagination() {
+  const pag = document.getElementById("videosPagination");
+  if (!pag) return;
+
+  if (!videosExpanded || allVideos.length <= VIDEOS_PER_PAGE) {
+    pag.classList.remove("show");
+    pag.innerHTML = "";
+    return;
+  }
+
+  const totalPages = Math.ceil(allVideos.length / VIDEOS_PER_PAGE);
+
+  pag.classList.add("show");
+  pag.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+    const page = i + 1;
+    return `<button type="button" class="pagination-btn ${page === videosPage ? "active" : ""}" data-page="${page}">${page} გვ.</button>`;
+  }).join("");
+
+  pag.querySelectorAll(".pagination-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      videosPage = parseInt(btn.dataset.page, 10);
+      renderVideos();
+      renderVideosPagination();
+    });
+  });
 }
 
 function updateVideosMoreBtn() {
@@ -239,40 +279,17 @@ function updateVideosMoreBtn() {
   }
 
   btn.style.display = "inline-flex";
-
-  if (videosShown >= allVideos.length) {
-    btn.textContent = "ნაკლების ჩვენება";
-  } else {
-    const remaining = allVideos.length - videosShown;
-    const nextBatch = Math.min(VIDEOS_PAGE_SIZE, remaining);
-    btn.textContent = `მეტის ჩვენება (+${nextBatch})`;
-  }
+  btn.textContent = videosExpanded ? "ნაკლების ჩვენება" : "მეტის ჩვენება";
 }
 
 const showMoreVideosBtn = document.getElementById("showMoreVideos");
 if (showMoreVideosBtn) {
   showMoreVideosBtn.addEventListener("click", () => {
-    if (videosShown >= allVideos.length) {
-      // collapse
-      videosShown = VIDEOS_INITIAL;
-      renderVideos();
-      updateVideosMoreBtn();
-      const videosSection = document.getElementById("videos");
-      if (videosSection) videosSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-
-    const container = document.getElementById("videosContainer");
-    const prevScroll = container ? container.scrollLeft : 0;
-
-    videosShown = Math.min(videosShown + VIDEOS_PAGE_SIZE, allVideos.length);
+    videosExpanded = !videosExpanded;
+    if (videosExpanded) videosPage = 1;
     renderVideos();
+    renderVideosPagination();
     updateVideosMoreBtn();
-
-    // ვიტოვებთ იგივე scroll პოზიციას, რომ 5-6-7 არ დაიკარგოს
-    if (container) {
-      container.scrollLeft = prevScroll;
-    }
   });
 }
 
@@ -295,8 +312,10 @@ async function loadSyllabus() {
       return;
     }
 
-    syllabusShown = Math.min(SYLLABUS_INITIAL, allSyllabus.length);
+    syllabusExpanded = false;
+    syllabusPage = 1;
     renderSyllabus();
+    renderSyllabusPagination();
     updateSyllabusMoreBtn();
   } catch (error) {
     console.error("Syllabus loading error:", error);
@@ -307,7 +326,14 @@ function renderSyllabus() {
   const container = document.getElementById("syllabusContainer");
   if (!container) return;
 
-  const visibleSyllabus = allSyllabus.slice(0, syllabusShown);
+  let visibleSyllabus;
+  if (!syllabusExpanded) {
+    visibleSyllabus = allSyllabus.slice(0, SYLLABUS_INITIAL);
+  } else {
+    const start = (syllabusPage - 1) * SYLLABUS_PER_PAGE;
+    const end = start + SYLLABUS_PER_PAGE;
+    visibleSyllabus = allSyllabus.slice(start, end);
+  }
 
   container.innerHTML = visibleSyllabus.map((item) => {
     const title = item["თემა"] || "";
@@ -325,6 +351,33 @@ function renderSyllabus() {
   }).join("");
 }
 
+function renderSyllabusPagination() {
+  const pag = document.getElementById("syllabusPagination");
+  if (!pag) return;
+
+  if (!syllabusExpanded || allSyllabus.length <= SYLLABUS_PER_PAGE) {
+    pag.classList.remove("show");
+    pag.innerHTML = "";
+    return;
+  }
+
+  const totalPages = Math.ceil(allSyllabus.length / SYLLABUS_PER_PAGE);
+
+  pag.classList.add("show");
+  pag.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+    const page = i + 1;
+    return `<button type="button" class="pagination-btn ${page === syllabusPage ? "active" : ""}" data-page="${page}">${page} გვ.</button>`;
+  }).join("");
+
+  pag.querySelectorAll(".pagination-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      syllabusPage = parseInt(btn.dataset.page, 10);
+      renderSyllabus();
+      renderSyllabusPagination();
+    });
+  });
+}
+
 function updateSyllabusMoreBtn() {
   const btn = document.getElementById("showMoreSyllabus");
   if (!btn) return;
@@ -335,14 +388,7 @@ function updateSyllabusMoreBtn() {
   }
 
   btn.style.display = "inline-flex";
-
-  if (syllabusShown >= allSyllabus.length) {
-    btn.textContent = "ნაკლების ჩვენება";
-  } else {
-    const remaining = allSyllabus.length - syllabusShown;
-    const nextBatch = Math.min(SYLLABUS_PAGE_SIZE, remaining);
-    btn.textContent = `მეტის ჩვენება (+${nextBatch})`;
-  }
+  btn.textContent = syllabusExpanded ? "ნაკლების ჩვენება" : "მეტის ჩვენება";
 }
 
 const showMoreSyllabusBtn = document.getElementById("showMoreSyllabus");
@@ -350,17 +396,10 @@ if (showMoreSyllabusBtn) {
   showMoreSyllabusBtn.addEventListener("click", () => {
     if (!allSyllabus.length) return;
 
-    if (syllabusShown >= allSyllabus.length) {
-      syllabusShown = SYLLABUS_INITIAL;
-      renderSyllabus();
-      updateSyllabusMoreBtn();
-      const syllabusSection = document.getElementById("syllabus");
-      if (syllabusSection) syllabusSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-
-    syllabusShown = Math.min(syllabusShown + SYLLABUS_PAGE_SIZE, allSyllabus.length);
+    syllabusExpanded = !syllabusExpanded;
+    if (syllabusExpanded) syllabusPage = 1;
     renderSyllabus();
+    renderSyllabusPagination();
     updateSyllabusMoreBtn();
   });
 }
