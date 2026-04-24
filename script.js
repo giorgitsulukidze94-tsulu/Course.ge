@@ -262,24 +262,17 @@ if (showMoreVideosBtn) {
       return;
     }
 
-    const prevCount = videosShown;
+    const container = document.getElementById("videosContainer");
+    const prevScroll = container ? container.scrollLeft : 0;
+
     videosShown = Math.min(videosShown + VIDEOS_PAGE_SIZE, allVideos.length);
     renderVideos();
     updateVideosMoreBtn();
 
-    // გადავიდეთ ახალ დაემატებულ ვიდეოებთან კარუსელში
-    requestAnimationFrame(() => {
-      const container = document.getElementById("videosContainer");
-      if (!container) return;
-      const cards = container.querySelectorAll(".video-card");
-      const targetCard = cards[prevCount];
-      if (targetCard) {
-        container.scrollTo({
-          left: targetCard.offsetLeft - container.offsetLeft,
-          behavior: "smooth"
-        });
-      }
-    });
+    // ვიტოვებთ იგივე scroll პოზიციას, რომ 5-6-7 არ დაიკარგოს
+    if (container) {
+      container.scrollLeft = prevScroll;
+    }
   });
 }
 
