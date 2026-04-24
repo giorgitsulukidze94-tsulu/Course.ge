@@ -1,3 +1,5 @@
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYmZJSbjPPn13Ks30mjg0rXlndSt0VqCmYpWUizfMQF_1s0rNZxxZw-TzqcHfRsUg_JQ/exec";
+
 const menuToggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
 const revealElements = document.querySelectorAll(".reveal");
@@ -65,16 +67,42 @@ gotoButtons.forEach((button) => {
 });
 
 if (applicationForm) {
-  applicationForm.addEventListener("submit", (e) => {
+  applicationForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(applicationForm);
-    const name = formData.get("name");
+
+    const payload = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      topic: formData.get("topic"),
+      message: formData.get("message")
+    };
 
     if (formNote) {
-      formNote.textContent = `${name}, თქვენი განაცხადი მიღებულია. შემდეგ ეტაპზე ეს ფორმა შეგვიძლია დავუკავშიროთ ელფოსტას ან Google Sheets-ს.`;
+      formNote.textContent = "იგზავნება...";
     }
 
-    applicationForm.reset();
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (formNote) {
+        formNote.textContent = "განაცხადი წარმატებით გაიგზავნა.";
+      }
+
+      applicationForm.reset();
+    } catch (error) {
+      if (formNote) {
+        formNote.textContent = "შეცდომა დაფიქსირდა. სცადეთ თავიდან.";
+      }
+    }
   });
 }
