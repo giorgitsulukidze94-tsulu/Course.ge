@@ -106,3 +106,140 @@ if (applicationForm) {
     }
   });
 }
+
+async function loadVideos() {
+  const container = document.getElementById("videosContainer");
+
+  if (!container) return;
+
+  try {
+    const response = await fetch(`${GOOGLE_SCRIPT_URL}?type=videos`);
+    const videos = await response.json();
+
+    container.innerHTML = "";
+
+    videos.forEach((video) => {
+      if (String(video["აქტიური"]).toUpperCase() !== "YES") return;
+
+      const title = video["სათაური"] || "";
+      const description = video["აღწერა"] || "";
+      const link = video["YouTube Link"] || "";
+
+      const embedLink = convertYouTubeLink(link);
+
+      container.innerHTML += `
+        <article class="video-card reveal visible">
+          <div class="video-thumb">
+            ${
+              embedLink
+                ? `<iframe width="100%" height="100%" src="${embedLink}" frameborder="0" allowfullscreen></iframe>`
+                : `<div class="play-circle">▶</div>`
+            }
+          </div>
+          <h3>${title}</h3>
+          <p>${description}</p>
+        </article>
+      `;
+    });
+
+    if (container.innerHTML.trim() === "") {
+      container.innerHTML = `
+        <article class="video-card reveal visible">
+          <div class="video-thumb">
+            <div class="play-circle">▶</div>
+          </div>
+          <h3>ვიდეოები მზადდება</h3>
+          <p>ვიდეო გაკვეთილები მალე დაემატება.</p>
+        </article>
+      `;
+    }
+  } catch (error) {
+    console.error("Videos loading error:", error);
+  }
+}
+
+async function loadSyllabus() {
+  const container = document.getElementById("syllabusContainer");
+
+  if (!container) return;
+
+  try {
+    const response = await fetch(`${GOOGLE_SCRIPT_URL}?type=syllabus`);
+    const syllabus = await response.json();
+
+    container.innerHTML = "";
+
+    syllabus.forEach((item) => {
+      if (String(item["აქტიური"]).toUpperCase() !== "YES") return;
+
+      const title = item["თემა"] || "";
+      const description = item["აღწერა"] || "";
+
+      container.innerHTML += `
+        <li><span>✦</span> ${title} — ${description}</li>
+      `;
+    });
+  } catch (error) {
+    console.error("Syllabus loading error:", error);
+  }
+}
+
+async function loadServices() {
+  const container = document.getElementById("servicesContainer");
+
+  if (!container) return;
+
+  try {
+    const response = await fetch(`${GOOGLE_SCRIPT_URL}?type=services`);
+    const services = await response.json();
+
+    container.innerHTML = "";
+
+    services.forEach((service) => {
+      if (String(service["აქტიური"]).toUpperCase() !== "YES") return;
+
+      const title = service["სერვისი"] || "";
+      const description = service["აღწერა"] || "";
+      const buttonText = service["ღილაკის ტექსტი"] || "დეტალურად";
+
+      container.innerHTML += `
+        <article class="course-card reveal visible">
+          <div class="course-glow cyan"></div>
+          <div class="course-icon chart-icon">⌘</div>
+          <h3>${title}</h3>
+          <p>${description}</p>
+          <button class="triangle-btn goto-btn" data-target="application" aria-label="${buttonText}">
+            <span></span>
+          </button>
+        </article>
+      `;
+    });
+  } catch (error) {
+    console.error("Services loading error:", error);
+  }
+}
+
+function convertYouTubeLink(link) {
+  if (!link) return "";
+
+  if (link.includes("youtube.com/watch?v=")) {
+    return link.replace("watch?v=", "embed/");
+  }
+
+  if (link.includes("youtu.be/")) {
+    const videoId = link.split("youtu.be/")[1];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  if (link.includes("youtube.com/embed/")) {
+    return link;
+  }
+
+  return "";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadVideos();
+  loadSyllabus();
+  loadServices();
+});
