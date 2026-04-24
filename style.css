@@ -654,6 +654,30 @@ select {
   gap: 14px;
 }
 
+/* Grid mode — როცა "მეტის ჩვენება" დაჭერილია */
+.video-carousel-wrap.expanded {
+  display: block;
+}
+
+.video-carousel-wrap.expanded .carousel-arrow {
+  display: none;
+}
+
+.video-carousel-wrap.expanded .video-carousel {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+  overflow: visible;
+  scroll-snap-type: none;
+  padding: 10px 0 22px;
+}
+
+.video-carousel-wrap.expanded .video-carousel .video-card {
+  min-width: 0;
+  max-width: none;
+  flex: unset;
+}
+
 .video-carousel,
 .video-grid,
 .video-grid.three-col {
@@ -1339,12 +1363,20 @@ select {
   .two-grid {
     grid-template-columns: 1fr;
   }
+
+  .video-carousel-wrap.expanded .video-carousel {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 900px) {
   .hero-grid,
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .video-carousel-wrap.expanded .video-carousel {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .menu {
@@ -1374,52 +1406,4 @@ select {
     display: none;
   }
 
-  .info-card,
-  .syllabus-box {
-    padding: 24px;
-  }
-}
-
-@media (max-width: 700px) {
-  .course-grid,
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .video-carousel .video-card,
-  .video-grid .video-card,
-  .video-grid.three-col .video-card {
-    min-width: 82vw;
-    max-width: 82vw;
-    flex-basis: 82vw;
-  }
-
-  .carousel-arrow {
-    display: none;
-  }
-
-  .hero-copy h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero-panel {
-    min-height: 380px;
-  }
-
-  .floating {
-    padding: 10px 14px;
-    font-size: 0.85rem;
-  }
-
-  .stat-box strong {
-    font-size: 1.6rem;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .feature-list.syllabus-list {
-    grid-template-columns: 1fr;
-  }
-}
+  .info-ca
