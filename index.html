@@ -36,6 +36,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
+
+  <!-- თემის ადრეული გააქტიურება — flicker-ის თავიდან ასაცილებლად -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("cours-theme");
+        var theme = (saved === "light" || saved === "dark")
+          ? saved
+          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="page-noise"></div>
@@ -64,6 +79,10 @@
       </nav>
 
       <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="თემის შეცვლა" title="ღამის/დღის რეჟიმი">
+          <span class="theme-icon theme-icon-moon">🌙</span>
+          <span class="theme-icon theme-icon-sun">☀️</span>
+        </button>
         <a href="#meeting" class="btn btn-liquid btn-small">დაჯავშნეთ შეხვედრა</a>
         <button class="menu-toggle" id="menuToggle" aria-label="მენიუ">☰</button>
       </div>
@@ -116,6 +135,8 @@
             <a href="#syllabus" class="floating widget widget-1" aria-label="გადასვლა სილაბუსზე"><span>სილაბუსი</span></a>
             <a href="#videos" class="floating widget widget-2" aria-label="გადასვლა ვიდეოებზე"><span>ვიდეო</span></a>
             <a href="#application" class="floating widget widget-3" aria-label="გადასვლა განაცხადის ფორმაზე"><span>შეხვედრა</span></a>
+            <a href="#crm-details" class="floating widget widget-4" aria-label="გადასვლა CRM-ზე"><span>CRM</span></a>
+            <a href="#website-details" class="floating widget widget-5" aria-label="გადასვლა საიტის აწყობაზე"><span>საიტი</span></a>
           </div>
         </div>
       </div>
@@ -301,6 +322,176 @@
 
           <div class="center-action syllabus-action">
             <button class="btn btn-glass" id="showMoreSyllabus" type="button">მეტის ჩვენება</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="crm-details">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-badge">CRM სისტემები</div>
+          <h2>CRM და აღრიცხვის სისტემები</h2>
+        </div>
+
+        <div class="syllabus-box reveal">
+          <p class="details-intro">
+            CRM (Customer Relationship Management) — კლიენტებთან ურთიერთობის, გაყიდვების და ფინანსური აღრიცხვის
+            ერთიანი სისტემაა, რომელიც ცვლის ერთმანეთისგან მოწყვეტილ Excel ფაილებს, ქაღალდის ჟურნალებს და მოკლე
+            მეილური მიმოწერებს. შედეგი — ყველა მონაცემი ერთ ადგილას, ზუსტი ანგარიშები რეალურ დროში, ნაკლები შეცდომა
+            და მეტი დრო რეალური საქმისთვის. ვქმნით მარტივ, ქართულენოვან სისტემებს, რომლებიც შენს ბიზნეს პროცესზე
+            არის მორგებული — არა შენ სისტემაზე.
+          </p>
+
+          <ul class="feature-list syllabus-list">
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>კლიენტების მონაცემთა ბაზა</strong>
+                <p>სრული ისტორია ერთი კლიკით — კონტაქტი, შეხვედრები, გარიგებები, წერილები და დავალიანებები. ვინმე გეძახება — მაშინვე იცი ვინ არის და რა ურთიერთობა გქონდათ.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>გაყიდვების აღრიცხვა</strong>
+                <p>თითოეული გარიგება — ეტაპობრივად: საწყისი კონტაქტიდან საბოლოო გადახდამდე. ვიცით რომელი კლიენტი სად "ჩავარდა" და სად სჭირდება ჩვენი ყურადღება.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ფინანსური კონტროლი</strong>
+                <p>შემოსავალი, ხარჯი, მოგება — რეალურ დროში, თვის, კვარტლის ან წლის მიხედვით. ვიცით რომელი პროდუქტი/სერვისი მოგვცემს მეტს და რომელი ნაკლებს.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>მარაგების აღრიცხვა</strong>
+                <p>საწყობის მდგომარეობა, შემოსვლა-გასვლა, მინიმალური ზღვარი, ავტომატური შეტყობინებები როცა რამე იწურება. არანაირი "შევცდი, ორჯერ ჩავწერე".</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ამოცანები და კალენდარი</strong>
+                <p>ვის რა ევალება, როდისთვის, რა პრიორიტეტით. გუნდი ერთმანეთს არ იმეორებს და არც აკლდება რამე — ყველაფერი ხილულია მენეჯერისთვის.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ავტომატური ანგარიშები</strong>
+                <p>ყოველდღიური, ყოველთვიური, წლიური ანგარიშები ერთი კლიკით. აღარ უნდა ვზიდოთ Excel-ში მონაცემები სადღაცდან სადღაც — უკვე დამუშავებულია.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ვისთვისაა</strong>
+                <p>მცირე და საშუალო ბიზნესისთვის, დამწყები მეწარმეებისთვის, ვინც Excel-ს გადაეშველება და უნდა რომ მონაცემები სადმე "ცოცხალ" სისტემაში ჰქონდეს — არა გაფანტულ ფაილებში.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>როგორ ვქმნით — ეტაპობრივად</strong>
+                <p>1. უფასო კონსულტაცია და შენი პროცესის შესწავლა.<br>2. ტექნიკური დავალების შედგენა ერთად.<br>3. პროტოტიპის შექმნა 1-2 კვირაში.<br>4. დახვეწა და ტესტირება რეალურ მონაცემებზე.<br>5. ჩაბარება + ტრენინგი გუნდისთვის + 3 თვის მხარდაჭერა.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="center-action syllabus-action">
+            <a href="#application" class="btn btn-liquid">CRM-ის შეკვეთა</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="website-details">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-badge">საიტის აწყობა</div>
+          <h2>საიტები და ვებ-პლატფორმები</h2>
+        </div>
+
+        <div class="syllabus-box reveal">
+          <p class="details-intro">
+            საიტი დღეს ბიზნესის ვიზიტის ბარათია — პირველი ადგილი, სადაც პოტენციური კლიენტი თქვენზე ინფორმაციას ეძებს.
+            ვქმნით სწრაფ, მობილურისთვის ადაპტირებულ და SEO-ზე მორგებულ ვებ-სივრცეებს, რომლებიც არა მარტო "მოდიან"
+            სიიდან პოზიციაში, არამედ რეალურად ყიდიან პროდუქტს ან გეხმარებიან კლიენტების მოზიდვაში. ყველაფერი
+            ქართულ ენაზე, გამართული ტიპოგრაფიით, სუფთა კოდით და სწრაფი ჩატვირთვით.
+          </p>
+
+          <ul class="feature-list syllabus-list">
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ლენდინგ გვერდები</strong>
+                <p>ერთ-გვერდიანი პრეზენტაცია კონკრეტული პროდუქტის, სერვისის ან კამპანიისთვის. მიზანი — ვიზიტორმა განახორციელოს მოქმედება: დარეკოს, შეიძინოს, შეავსოს განაცხადი.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>მრავალ-გვერდიანი საიტები</strong>
+                <p>სრული ბიზნეს საიტი — მთავარი, შესახებ, სერვისები, ბლოგი, კონტაქტი. სტრუქტურირებული, ლამაზად დაკავშირებული გვერდებით.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ონლაინ მაღაზიები</strong>
+                <p>კალათა, ფილტრები, გადახდის სისტემა (TBC, BOG, PayPal), შეკვეთის სტატუსები, ადმინის პანელი. მზადაა გასაყიდად პირველივე დღიდან.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ბიზნეს პორტალები</strong>
+                <p>შიდა სამუშაო სივრცე — თანამშრომლებისთვის, პარტნიორებისთვის ან კლიენტებისთვის. ავტორიზაცია, როლები, პერსონალური მონაცემები.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>მობილურთან ადაპტაცია</strong>
+                <p>საიტი ერთნაირად სუფთად გამოიყურება კომპიუტერზე, პლანშეტზე და ტელეფონზე. Google-ისთვისაც მნიშვნელოვანია — ახლა მობილური ვერსიით ასორტირებს.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>SEO ოპტიმიზაცია</strong>
+                <p>სწორი ტეგები, meta აღწერები, სწრაფი ჩატვირთვა, structured data — ყველაფერი, რაც ძიების სისტემებს მოსწონს. Google-ზე თქვენი საიტი მოიძებნება.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>დომენი და ჰოსტინგი</strong>
+                <p>ვეხმარებით დომენის შერჩევაში და ჰოსტინგის დაყენებაში. ყველაფერი "გასაღებზე" — თქვენ მხოლოდ ადმინი ხართ, ტექნიკური მხარე ჩვენზეა.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>ვისთვისაა</strong>
+                <p>მცირე და საშუალო ბიზნესისთვის, დამწყები მეწარმეებისთვის, ვისაც სჭირდება ონლაინ "პრეზენტაცია" ან ონლაინ გაყიდვის საშუალება. სტარტ-აპებიც.</p>
+              </div>
+            </li>
+            <li>
+              <span>✦</span>
+              <div>
+                <strong>როგორ ვქმნით — ეტაპობრივად</strong>
+                <p>1. შეხვედრა და მიზნების განსაზღვრა.<br>2. სტრუქტურის და კონტენტის გეგმა.<br>3. დიზაინი — ვაჩვენებთ პროტოტიპს დამტკიცებამდე.<br>4. კოდის წერა და ტესტირება.<br>5. გაშვება + 3 თვის უფასო სერვისი (მცირე ცვლილებები, ტექ. დახმარება).</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="center-action syllabus-action">
+            <a href="#application" class="btn btn-liquid">საიტის შეკვეთა</a>
           </div>
         </div>
       </div>
