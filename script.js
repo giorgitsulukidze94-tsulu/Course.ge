@@ -21,6 +21,70 @@ let allSyllabus = [];
 let syllabusExpanded = false;
 let syllabusPage = 1;
 
+/* ---------- Theme toggle (dark / light) ---------- */
+const THEME_KEY = "cours-theme";
+const themeToggle = document.getElementById("themeToggle");
+
+function getInitialTheme() {
+  try {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === "light" || saved === "dark") return saved;
+  } catch (e) {
+    /* localStorage might be blocked */
+  }
+
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+    return "light";
+  }
+  return "dark";
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    meta.setAttribute("content", theme === "light" ? "#f4f7fd" : "#030816");
+  }
+  if (themeToggle) {
+    themeToggle.setAttribute(
+      "aria-label",
+      theme === "light" ? "ღამის რეჟიმზე გადართვა" : "დღის რეჟიმზე გადართვა"
+    );
+  }
+}
+
+// საწყისი თემის გააქტიურება — DOMContentLoaded-მდე, რომ flicker არ იყოს
+applyTheme(getInitialTheme());
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    const next = current === "light" ? "dark" : "light";
+    applyTheme(next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {
+      /* ignore */
+    }
+    showToast(next === "light" ? "დღის რეჟიმი ✦" : "ღამის რეჟიმი ✦");
+  });
+}
+
+// თუ მომხმარებელს სისტემის თემა შეუცვლია და ხელით არ აქვს არჩეული — მივყვეთ
+if (window.matchMedia) {
+  const mq = window.matchMedia("(prefers-color-scheme: light)");
+  if (mq.addEventListener) {
+    mq.addEventListener("change", (e) => {
+      try {
+        if (localStorage.getItem(THEME_KEY)) return;
+      } catch (err) {
+        /* ignore */
+      }
+      applyTheme(e.matches ? "light" : "dark");
+    });
+  }
+}
+
 /* ---------- Mobile menu ---------- */
 if (menuToggle && menu) {
   menuToggle.addEventListener("click", (e) => {
