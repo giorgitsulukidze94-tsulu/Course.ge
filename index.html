@@ -8,49 +8,8 @@
     name="description"
     content="პროფესიონალური Excel კურსები, ვიდეო გაკვეთილები, სილაბუსი, პრაქტიკული დავალებები, შეხვედრის დაჯავშნა და ციფრული სერვისები."
   />
-  <meta name="keywords" content="Excel, Excel კურსი, ვიდეო გაკვეთილები, სილაბუსი, Excel ანალიტიკა, Excel ფუნქციები, CRM, საიტების აწყობა" />
-  <meta name="author" content="cours.ge" />
-  <meta name="theme-color" content="#030816" />
-  <link rel="canonical" href="https://cours.ge/" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://cours.ge/" />
-  <meta property="og:title" content="Course.ge | Excel კურსები და ციფრული სერვისები" />
-  <meta property="og:description" content="პროფესიონალური Excel კურსები, ვიდეო გაკვეთილები, სილაბუსი, პრაქტიკული დავალებები და ციფრული სერვისები ერთ სივრცეში." />
-  <meta property="og:image" content="https://cours.ge/image5.png" />
-  <meta property="og:locale" content="ka_GE" />
-  <meta property="og:site_name" content="cours.ge" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Course.ge | Excel კურსები და ციფრული სერვისები" />
-  <meta name="twitter:description" content="Excel კურსები, ვიდეო გაკვეთილები და ციფრული სერვისები ერთ სივრცეში." />
-  <meta name="twitter:image" content="https://cours.ge/image5.png" />
-
   <link rel="icon" type="image/png" href="image5.png" />
-
-  <!-- ქართული ფონტი -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="style.css" />
-
-  <!-- თემის ადრეული გააქტიურება — flicker-ის თავიდან ასაცილებლად -->
-  <script>
-    (function () {
-      try {
-        var saved = localStorage.getItem("cours-theme");
-        var theme = (saved === "light" || saved === "dark")
-          ? saved
-          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-        document.documentElement.setAttribute("data-theme", theme);
-      } catch (e) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      }
-    })();
-  </script>
 </head>
 <body>
   <div class="page-noise"></div>
@@ -79,10 +38,6 @@
       </nav>
 
       <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="თემის შეცვლა" title="ღამის/დღის რეჟიმი">
-          <span class="theme-icon theme-icon-moon">🌙</span>
-          <span class="theme-icon theme-icon-sun">☀️</span>
-        </button>
         <a href="#meeting" class="btn btn-liquid btn-small">დაჯავშნეთ შეხვედრა</a>
         <button class="menu-toggle" id="menuToggle" aria-label="მენიუ">☰</button>
       </div>
@@ -132,11 +87,9 @@
 
             <img src="image5.png" alt="Course.ge" class="hero-logo" />
 
-            <a href="#syllabus" class="floating widget widget-1" aria-label="გადასვლა სილაბუსზე"><span>სილაბუსი</span></a>
-            <a href="#videos" class="floating widget widget-2" aria-label="გადასვლა ვიდეოებზე"><span>ვიდეო</span></a>
-            <a href="#application" class="floating widget widget-3" aria-label="გადასვლა განაცხადის ფორმაზე"><span>შეხვედრა</span></a>
-            <a href="#crm-details" class="floating widget widget-4" aria-label="გადასვლა CRM-ზე"><span>CRM</span></a>
-            <a href="#website-details" class="floating widget widget-5" aria-label="გადასვლა საიტის აწყობაზე"><span>საიტი</span></a>
+            <div class="floating widget widget-1"><span>Excel</span></div>
+            <div class="floating widget widget-2"><span>ვიდეო</span></div>
+            <div class="floating widget widget-3"><span>შეხვედრა</span></div>
           </div>
         </div>
       </div>
@@ -264,8 +217,6 @@
           <button class="carousel-arrow right" id="videoNext" type="button" aria-label="შემდეგი ვიდეო">›</button>
         </div>
 
-        <div class="pagination" id="videosPagination"></div>
-
         <div class="center-action">
           <button class="btn btn-glass" id="showMoreVideos" type="button">მეტის ჩვენება</button>
         </div>
@@ -280,218 +231,16 @@
         </div>
 
         <div class="syllabus-box reveal">
-          <ul class="feature-list syllabus-list" id="syllabusContainer">
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>Excel ინტერფეისი და ბაზისური ნავიგაცია</strong>
-                <p>პროგრამის გარემო, მენიუები, უჯრები და სამუშაო ფურცელი.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ფორმატირება და ცხრილების გამართვა</strong>
-                <p>სტილი, ფერები, ცხრილის სტრუქტურის გამართვა.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ფორმულები და ფუნქციები</strong>
-                <p>IF, SUM, COUNTIF, XLOOKUP და სხვა ყველაზე საჭირო ფუნქციები.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ფილტრი, სორტირება და ანალიზი</strong>
-                <p>მონაცემების დახარისხება და ფილტრით მართვა.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>Pivot Table და პრაქტიკული ქეისები</strong>
-                <p>რთული ანალიზი ერთი ცხრილიდან, რეალური ბიზნეს მაგალითები.</p>
-              </div>
-            </li>
+          <ul class="feature-list" id="syllabusContainer">
+            <li><span>✦</span> Excel ინტერფეისი და ბაზისური ნავიგაცია</li>
+            <li><span>✦</span> ფორმატირება და ცხრილების გამართვა</li>
+            <li><span>✦</span> ფორმულები და ფუნქციები</li>
+            <li><span>✦</span> ფილტრი, სორტირება და ანალიზი</li>
+            <li><span>✦</span> Pivot Table და პრაქტიკული ქეისები</li>
           </ul>
-
-          <div class="pagination" id="syllabusPagination"></div>
 
           <div class="center-action syllabus-action">
             <button class="btn btn-glass" id="showMoreSyllabus" type="button">მეტის ჩვენება</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="crm-details">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-badge">CRM სისტემები</div>
-          <h2>CRM და აღრიცხვის სისტემები</h2>
-        </div>
-
-        <div class="syllabus-box reveal">
-          <p class="details-intro">
-            CRM (Customer Relationship Management) — კლიენტებთან ურთიერთობის, გაყიდვების და ფინანსური აღრიცხვის
-            ერთიანი სისტემაა, რომელიც ცვლის ერთმანეთისგან მოწყვეტილ Excel ფაილებს, ქაღალდის ჟურნალებს და მოკლე
-            მეილური მიმოწერებს. შედეგი — ყველა მონაცემი ერთ ადგილას, ზუსტი ანგარიშები რეალურ დროში, ნაკლები შეცდომა
-            და მეტი დრო რეალური საქმისთვის. ვქმნით მარტივ, ქართულენოვან სისტემებს, რომლებიც შენს ბიზნეს პროცესზე
-            არის მორგებული — არა შენ სისტემაზე.
-          </p>
-
-          <ul class="feature-list syllabus-list">
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>კლიენტების მონაცემთა ბაზა</strong>
-                <p>სრული ისტორია ერთი კლიკით — კონტაქტი, შეხვედრები, გარიგებები, წერილები და დავალიანებები. ვინმე გეძახება — მაშინვე იცი ვინ არის და რა ურთიერთობა გქონდათ.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>გაყიდვების აღრიცხვა</strong>
-                <p>თითოეული გარიგება — ეტაპობრივად: საწყისი კონტაქტიდან საბოლოო გადახდამდე. ვიცით რომელი კლიენტი სად "ჩავარდა" და სად სჭირდება ჩვენი ყურადღება.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ფინანსური კონტროლი</strong>
-                <p>შემოსავალი, ხარჯი, მოგება — რეალურ დროში, თვის, კვარტლის ან წლის მიხედვით. ვიცით რომელი პროდუქტი/სერვისი მოგვცემს მეტს და რომელი ნაკლებს.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>მარაგების აღრიცხვა</strong>
-                <p>საწყობის მდგომარეობა, შემოსვლა-გასვლა, მინიმალური ზღვარი, ავტომატური შეტყობინებები როცა რამე იწურება. არანაირი "შევცდი, ორჯერ ჩავწერე".</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ამოცანები და კალენდარი</strong>
-                <p>ვის რა ევალება, როდისთვის, რა პრიორიტეტით. გუნდი ერთმანეთს არ იმეორებს და არც აკლდება რამე — ყველაფერი ხილულია მენეჯერისთვის.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ავტომატური ანგარიშები</strong>
-                <p>ყოველდღიური, ყოველთვიური, წლიური ანგარიშები ერთი კლიკით. აღარ უნდა ვზიდოთ Excel-ში მონაცემები სადღაცდან სადღაც — უკვე დამუშავებულია.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ვისთვისაა</strong>
-                <p>მცირე და საშუალო ბიზნესისთვის, დამწყები მეწარმეებისთვის, ვინც Excel-ს გადაეშველება და უნდა რომ მონაცემები სადმე "ცოცხალ" სისტემაში ჰქონდეს — არა გაფანტულ ფაილებში.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>როგორ ვქმნით — ეტაპობრივად</strong>
-                <p>1. უფასო კონსულტაცია და შენი პროცესის შესწავლა.<br>2. ტექნიკური დავალების შედგენა ერთად.<br>3. პროტოტიპის შექმნა 1-2 კვირაში.<br>4. დახვეწა და ტესტირება რეალურ მონაცემებზე.<br>5. ჩაბარება + ტრენინგი გუნდისთვის + 3 თვის მხარდაჭერა.</p>
-              </div>
-            </li>
-          </ul>
-
-          <div class="center-action syllabus-action">
-            <a href="#application" class="btn btn-liquid">CRM-ის შეკვეთა</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="website-details">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-badge">საიტის აწყობა</div>
-          <h2>საიტები და ვებ-პლატფორმები</h2>
-        </div>
-
-        <div class="syllabus-box reveal">
-          <p class="details-intro">
-            საიტი დღეს ბიზნესის ვიზიტის ბარათია — პირველი ადგილი, სადაც პოტენციური კლიენტი თქვენზე ინფორმაციას ეძებს.
-            ვქმნით სწრაფ, მობილურისთვის ადაპტირებულ და SEO-ზე მორგებულ ვებ-სივრცეებს, რომლებიც არა მარტო "მოდიან"
-            სიიდან პოზიციაში, არამედ რეალურად ყიდიან პროდუქტს ან გეხმარებიან კლიენტების მოზიდვაში. ყველაფერი
-            ქართულ ენაზე, გამართული ტიპოგრაფიით, სუფთა კოდით და სწრაფი ჩატვირთვით.
-          </p>
-
-          <ul class="feature-list syllabus-list">
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ლენდინგ გვერდები</strong>
-                <p>ერთ-გვერდიანი პრეზენტაცია კონკრეტული პროდუქტის, სერვისის ან კამპანიისთვის. მიზანი — ვიზიტორმა განახორციელოს მოქმედება: დარეკოს, შეიძინოს, შეავსოს განაცხადი.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>მრავალ-გვერდიანი საიტები</strong>
-                <p>სრული ბიზნეს საიტი — მთავარი, შესახებ, სერვისები, ბლოგი, კონტაქტი. სტრუქტურირებული, ლამაზად დაკავშირებული გვერდებით.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ონლაინ მაღაზიები</strong>
-                <p>კალათა, ფილტრები, გადახდის სისტემა (TBC, BOG, PayPal), შეკვეთის სტატუსები, ადმინის პანელი. მზადაა გასაყიდად პირველივე დღიდან.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ბიზნეს პორტალები</strong>
-                <p>შიდა სამუშაო სივრცე — თანამშრომლებისთვის, პარტნიორებისთვის ან კლიენტებისთვის. ავტორიზაცია, როლები, პერსონალური მონაცემები.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>მობილურთან ადაპტაცია</strong>
-                <p>საიტი ერთნაირად სუფთად გამოიყურება კომპიუტერზე, პლანშეტზე და ტელეფონზე. Google-ისთვისაც მნიშვნელოვანია — ახლა მობილური ვერსიით ასორტირებს.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>SEO ოპტიმიზაცია</strong>
-                <p>სწორი ტეგები, meta აღწერები, სწრაფი ჩატვირთვა, structured data — ყველაფერი, რაც ძიების სისტემებს მოსწონს. Google-ზე თქვენი საიტი მოიძებნება.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>დომენი და ჰოსტინგი</strong>
-                <p>ვეხმარებით დომენის შერჩევაში და ჰოსტინგის დაყენებაში. ყველაფერი "გასაღებზე" — თქვენ მხოლოდ ადმინი ხართ, ტექნიკური მხარე ჩვენზეა.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>ვისთვისაა</strong>
-                <p>მცირე და საშუალო ბიზნესისთვის, დამწყები მეწარმეებისთვის, ვისაც სჭირდება ონლაინ "პრეზენტაცია" ან ონლაინ გაყიდვის საშუალება. სტარტ-აპებიც.</p>
-              </div>
-            </li>
-            <li>
-              <span>✦</span>
-              <div>
-                <strong>როგორ ვქმნით — ეტაპობრივად</strong>
-                <p>1. შეხვედრა და მიზნების განსაზღვრა.<br>2. სტრუქტურის და კონტენტის გეგმა.<br>3. დიზაინი — ვაჩვენებთ პროტოტიპს დამტკიცებამდე.<br>4. კოდის წერა და ტესტირება.<br>5. გაშვება + 3 თვის უფასო სერვისი (მცირე ცვლილებები, ტექ. დახმარება).</p>
-              </div>
-            </li>
-          </ul>
-
-          <div class="center-action syllabus-action">
-            <a href="#application" class="btn btn-liquid">საიტის შეკვეთა</a>
           </div>
         </div>
       </div>
@@ -663,51 +412,48 @@
           <p>Excel კურსები, ვიდეო გაკვეთილები და ციფრული სერვისები ერთ სივრცეში.</p>
 
           <div class="socials">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="YouTube">▶</a>
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="Instagram">◎</a>
+            <a href="#">f</a>
+            <a href="#">▶</a>
+            <a href="#">in</a>
+            <a href="#">◎</a>
           </div>
         </div>
 
         <div>
           <h4>კურსები</h4>
           <ul>
-            <li><a href="#courses">Excel საფუძვლები</a></li>
-            <li><a href="#courses">Excel ანალიტიკა</a></li>
-            <li><a href="#courses">Excel ფუნქციები</a></li>
-            <li><a href="#videos">ვიდეო გაკვეთილები</a></li>
+            <li><a href="#">Excel საფუძვლები</a></li>
+            <li><a href="#">Excel ანალიტიკა</a></li>
+            <li><a href="#">Excel ფუნქციები</a></li>
+            <li><a href="#">ვიდეო გაკვეთილები</a></li>
           </ul>
         </div>
 
         <div>
           <h4>სერვისები</h4>
           <ul>
-            <li><a href="#services">საიტების აწყობა</a></li>
-            <li><a href="#services">CRM სისტემები</a></li>
-            <li><a href="#services">გაყიდვების აღრიცხვა</a></li>
-            <li><a href="#services">მარაგების მართვა</a></li>
+            <li><a href="#">საიტების აწყობა</a></li>
+            <li><a href="#">CRM სისტემები</a></li>
+            <li><a href="#">გაყიდვების აღრიცხვა</a></li>
+            <li><a href="#">მარაგების მართვა</a></li>
           </ul>
         </div>
 
         <div>
           <h4>სიახლეების მიღება</h4>
-          <form class="newsletter" id="newsletterForm">
-            <input type="email" name="email" placeholder="შეიყვანე შენი ელ-ფოსტა" required />
-            <button type="submit" aria-label="გამოწერა">→</button>
+          <form class="newsletter">
+            <input type="email" placeholder="შეიყვანე შენი ელ-ფოსტა" />
+            <button type="submit">→</button>
           </form>
-          <p class="newsletter-note" id="newsletterNote"></p>
         </div>
       </div>
 
       <div class="container footer-bottom">
         <p>© 2026 cours.ge • ყველა უფლება დაცულია</p>
-        <a href="#home" class="scroll-top" aria-label="ზემოთ დაბრუნება">↑</a>
+        <a href="#home" class="scroll-top">↑</a>
       </div>
     </footer>
   </main>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="script.js"></script>
 </body>
