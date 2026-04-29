@@ -1564,4 +1564,86 @@ select {
   }
 
   .video-carousel-wrap.expanded .video-carousel {
-    grid-template-co
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .menu {
+    position: absolute;
+    top: 88px;
+    right: 4%;
+    width: 240px;
+    padding: 18px;
+    border-radius: 20px;
+    background: var(--card-bg-2);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .btn-small {
+    display: none;
+  }
+
+  .info-card,
+  .syllabus-box {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .course-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .video-carousel-wrap.expanded .video-carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .video-carousel .video-card,
+  .video-grid .video-card,
+  .video-grid.three-col .video-card {
+    min-width: 82vw;
+    max-width: 82vw;
+    flex-basis: 82vw;
+  }
+
+  .carousel-arrow {
+    display: none;
+  }
+
+  .hero-copy h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-panel {
+    min-height: 380px;
+  }
+
+  .floating {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .stat-box strong {
+    font-size: 1.6rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-list.syllabus-list {
+    grid-template-columns: 1fr;
+  }
+}
