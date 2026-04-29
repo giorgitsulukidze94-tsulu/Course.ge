@@ -419,9 +419,7 @@ function renderSyllabus() {
     const lines = String(description)
       .replace(/\\r\\n|\\n|\\r/g, "\n")     // literal \n / \r → real newline
       .replace(/<br\s*\/?>/gi, "\n")        // <br> → newline
-      .split(/[\r\n
-
-]+/)         // ნებისმიერი ხაზის გადატანა
+      .split(/\r\n|\r|\n|\u2028|\u2029/)  // მხოლოდ რეალურ ხაზის გადატანებზე
       .map((l) => l.trim())
       .filter((l) => l.length > 0);
 
@@ -606,7 +604,7 @@ if (videosContainer) {
     // throttled via rAF
     if (videosContainer._scrollRaf) return;
     videosContainer._scrollRaf = requestAnimationFrame(() => {
-      updateCarouselArrows();
+        updateCarouselArrows();
       videosContainer._scrollRaf = null;
     });
   });
